@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.me.dao.ResearchDao">
+    <sql id="BASE_TABLE">item</sql>
+    <sql id="BASE_COLUMN">id,company,project,batch,aidingways,assistance</sql>
+    <resultMap id="item" type="com.me.model.Item">
+        <id column="id" property="id" />
+        <result column="company" property="company" />
+        <result column="project" property="project" />
+        <result column="batch" property="batch" />
+        <result column="aidingways" property="aidingways" />
+        <result column="assistance" property="assistance" />
+    </resultMap>
+    <insert id="insert" parameterType="com.me.model.Item" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            company,project,batch,aidingways,assistance,
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            #{company,jdbcType=VARCHAR},#{project,jdbcType=VARCHAR},#{batch,jdbcType=VARCHAR},#{aidingways,jdbcType=VARCHAR},#{assistance,jdbcType=VARCHAR}
+        </trim>
+    </insert>
+    <select id="queryByKeyword" parameterType="com.me.model.Item" resultMap="item">
+        select 
+        <include refid="BASE_COLUMN"/>
+        from 
+        <include refid="BASE_TABLE"/>
+        where
+        <if test="company!=null">
+            company LIKE CONCAT(CONCAT('%',#{name}),'%')
+        </if>
+
+    </select>
+</mapper>
