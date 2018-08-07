@@ -75,4 +75,16 @@ public class Item {
         this.aidingways = aidingways;
         this.assistance = assistance;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", company='" + company + '\'' +
+                ", project='" + project + '\'' +
+                ", batch='" + batch + '\'' +
+                ", aidingways='" + aidingways + '\'' +
+                ", assistance='" + assistance + '\'' +
+                '}';
+    }
 }

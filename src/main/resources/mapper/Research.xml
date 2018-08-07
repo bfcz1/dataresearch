@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.me.dao.ResearchDao">
-    <sql id="BASE_TABLE">item</sql>
+    <sql id="BASE_TABLE">dataresearch</sql>
     <sql id="BASE_COLUMN">id,company,project,batch,aidingways,assistance</sql>
     <resultMap id="item" type="com.me.model.Item">
         <id column="id" property="id" />
@@ -28,7 +28,7 @@
         <include refid="BASE_TABLE"/>
         where
         <if test="company!=null">
-            company LIKE CONCAT(CONCAT('%',#{name}),'%')
+            company LIKE CONCAT(CONCAT('%',#{company}),'%')
         </if>
 
     </select>

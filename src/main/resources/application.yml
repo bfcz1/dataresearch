@@ -22,6 +22,17 @@ spring:
         poolPreparedStatements: true
         maxPoolPreparedStatementPerConnectionSize: 20
         maxOpenPreparedStatements: 20
+    servlet:
+      multipart:
+        #单个文件最大尺寸
+        max-file-size: 10mb
+        #一次请求最大尺寸
+        max-request-size: 50mb
+    thymeleaf:
+      check-template: true
+      check-template-location: true
+      mode: HTML
+      suffix: .html
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.me.model

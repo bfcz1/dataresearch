@@ -9,7 +9,7 @@ import java.util.List;
 public interface ResearchDao {
 
     int insert(Item item);
-    List<Item> queryByKeyword(String keyword);
+    List<Item> queryByKeyword(Item item);
 
 
 
