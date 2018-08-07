@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="multipart/form-data;charset=utf-8"/>
+    <title>主页</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./css/bootstrap-responsive.min.css" rel="stylesheet"/>
+    <link href="./css/font-awesome.css" rel="stylesheet"/>
+    <link href="./css/adminia.css" rel="stylesheet"/>
+    <link href="./css/adminia-responsive.css" rel="stylesheet"/>
+    <link href="./css/pages/dashboard.css" rel="stylesheet"/>
+    <style type="text/css">
+        fieldset {
+            padding: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="upload" style="width: 50%;height: 800px;float: left;">
+
+</div>
+<!--		<div class="divider" style="width: 0.5%;height: 800px; float: left; background:-webkit-linear-gradient(top,white,gray,white);">
+-->
+</div>
+<div class="reaearch" style="width: 49%;height: 800px;float: left;">
+
+    <form id="uploadform" action="/upload" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <div id="legend">
+                <legend class="">上传</legend>
+            </div>
+            <div class="control-group">
+                <!-- File Upload -->
+                <div class="controls">
+                    <input class="input-file" id="fileInput" type="file" name="file">
+                </div>
+            </div>
+            <div class="control-group">
+                <!-- Button -->
+                <div class="controls">
+                    <button class="btn btn-success">上传</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+    <form action="" method="post">
+
+        <fieldset>
+            <div id="legend2" class="">
+                <legend class="">查询</legend>
+            </div>
+
+            <div class="control-group">
+                <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                <button class="btn btn-primary " style="position: absolute; ">查 询</button>
+            </div>
+
+
+        </fieldset>
+    </form>
+
+</div>
+</body>
+<!--<script src="./js/jquery-1.7.2.min.js "></script>
+<script src="./js/excanvas.min.js "></script>
+<script src="./js/jquery.flot.js "></script>
+<script src="./js/jquery.flot.pie.js "></script>
+<script src="./js/jquery.flot.orderBars.js "></script>
+<script src="./js/jquery.flot.resize.js "></script>
+<script src="./js/bootstrap.js "></script>
+<script src="./js/charts/bar.js "></script>-->
+
+</html>
