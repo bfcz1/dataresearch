@@ -27,8 +27,6 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> findAllUser(Item item) {
 
         List<Item> itemList = dao.queryByKeyword(item);
-
-
         return itemList;
     }
 

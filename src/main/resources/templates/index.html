@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="multipart/form-data;charset=utf-8"/>
@@ -15,13 +15,30 @@
             padding: 100px;
         }
     </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var state = document.getElementById("state");
+            if ("uploadSuccess" == state.value) {
+                alert("上传成功");
+            } else if ("uploadFail" == state.value) {
+                alert("上传失败");
+            }else if ("analysisail" == state.value) {
+                alert("excel解析异常");
+            }
+            state.value="alreadyLoad";
+        }
+    </script>
 </head>
 <body>
 <div class="upload" style="width: 50%;height: 800px;float: left;">
-
+    <div id="content" style="margin:  33px -30px auto auto;width: 600px;height: 600px;">
+        <h1>使用说明：</h1>
+        &nbsp;&nbsp;&nbsp;&nbsp;<p>1.上传excel文件，注意必须是07版的excel(格式为xlsx)，否则无法识别</p>
+        &nbsp;&nbsp;&nbsp;&nbsp;<p>2.上传的表格格式请严格按照所给的模板编辑，否则可能无法解析</p>
+        &nbsp;&nbsp;&nbsp;&nbsp;<p>3.可以一次上传多个，但是总大小需小于20M</p>
+        &nbsp;&nbsp;&nbsp;&nbsp;<p>4.输入关键字，点击查询查看数据</p>
+    </div>
 </div>
-<!--		<div class="divider" style="width: 0.5%;height: 800px; float: left; background:-webkit-linear-gradient(top,white,gray,white);">
--->
 </div>
 <div class="reaearch" style="width: 49%;height: 800px;float: left;">
 
@@ -45,7 +62,7 @@
 
         </fieldset>
     </form>
-    <form action="" method="post">
+    <form action="/research" method="get">
 
         <fieldset>
             <div id="legend2" class="">
@@ -53,16 +70,17 @@
             </div>
 
             <div class="control-group">
-                <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                <input type="text" name = "keyword" class="form-control input-sm" placeholder="输入文字搜索">
                 <button class="btn btn-primary " style="position: absolute; ">查 询</button>
             </div>
 
 
         </fieldset>
     </form>
-
+    <input type="hidden" id="state" th:value="${state}">
 </div>
 </body>
+
 <!--<script src="./js/jquery-1.7.2.min.js "></script>
 <script src="./js/excanvas.min.js "></script>
 <script src="./js/jquery.flot.js "></script>
