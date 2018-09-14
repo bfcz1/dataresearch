@@ -30,6 +30,10 @@
         <if test="company!=null">
             company LIKE CONCAT(CONCAT('%',#{company}),'%')
         </if>
-
     </select>
+    <delete id="delete" parameterType="com.me.model.Item">
+        DELETE FROM
+        <include refid="BASE_TABLE"/>
+        where id = #{id}
+    </delete>
 </mapper>

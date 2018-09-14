@@ -1,6 +1,7 @@
 package com.me.util;
 
 import com.me.model.Item;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -31,7 +32,7 @@ public class ExcelUtils {
                     }
                     //判断是第一行，且为表格头，那么跳过这一行。
                     try {
-                        if(numRow==0&&"公司名称".equals(xRow.getCell(1)))continue;
+                        if(numRow==0&&StringUtils.contains(getValue(xRow.getCell(1)),"公司名称"))continue;
                     } catch (Exception e) {
                     }
                     Item item = new Item();

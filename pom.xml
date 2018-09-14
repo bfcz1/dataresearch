@@ -2,7 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.me</groupId>
     <artifactId>dataresearch</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -129,20 +128,28 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.me.DataresearchApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <!-- mybatis generator 自动生成代码插件 -->
             <!--<plugin>-->
-                <!--<groupId>org.mybatis.generator</groupId>-->
-                <!--<artifactId>mybatis-generator-maven-plugin</artifactId>-->
-                <!--<version>1.3.2</version>-->
-                <!--<configuration>-->
-                    <!--<configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>-->
-                    <!--<overwrite>true</overwrite>-->
-                    <!--<verbose>true</verbose>-->
-                <!--</configuration>-->
+            <!--<groupId>org.mybatis.generator</groupId>-->
+            <!--<artifactId>mybatis-generator-maven-plugin</artifactId>-->
+            <!--<version>1.3.2</version>-->
+            <!--<configuration>-->
+            <!--<configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>-->
+            <!--<overwrite>true</overwrite>-->
+            <!--<verbose>true</verbose>-->
+            <!--</configuration>-->
             <!--</plugin>-->
         </plugins>
     </build>
-
-
 </project>

@@ -46,7 +46,7 @@ public class ResearchController {
     }
 
     @PostMapping(value = "/upload")
-    public ModelAndView upload(@RequestParam("file") MultipartFile[] fileArray,
+        public ModelAndView upload(@RequestParam("file") MultipartFile[] fileArray,
                                HttpServletRequest request) throws IOException {
         for (MultipartFile file : fileArray) {
 
@@ -92,7 +92,6 @@ public class ResearchController {
         ModelAndView view = new ModelAndView("research");
         view.addObject("data", dataMap);
         return view;
-
     }
 
 

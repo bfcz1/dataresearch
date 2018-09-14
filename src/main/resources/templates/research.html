@@ -8,16 +8,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link href="./css/bootstrap.min.css" rel="stylesheet"/>
     <link href="./css/bootstrap-responsive.min.css" rel="stylesheet"/>
-    <link href="./css/font-awesome.css" rel="stylesheet"/>
+    <!--<link href="./css/font-awesome.css" rel="stylesheet"/>-->
     <link href="./css/adminia.css" rel="stylesheet"/>
     <link href="./css/adminia-responsive.css" rel="stylesheet"/>
     <link href="./css/pages/dashboard.css" rel="stylesheet"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style type="text/css">
-        div.widget-content > table > tbody > tr > td:nth-child(6) {
+        div.widget-content > table > tbody > tr > td:nth-child(7) {
             color: red;
         }
     </style>
+    <script src="./js/jquery-1.7.2.min.js"></script>
+    <script src="./js/excanvas.min.js"></script>
+    <script src="./js/jquery.flot.js"></script>
+    <script src="./js/jquery.flot.pie.js"></script>
+    <script src="./js/jquery.flot.orderBars.js"></script>
+    <script src="./js/jquery.flot.resize.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script type="text/javascript">
+        function deleteitem(id) {
+            var confirm = window.confirm('确定要删除这一条吗');
+            if (confirm) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/delete',
+                    data: 'id=' + id,
+                    success: function (respData) {
+                        if (respData == 'successed') {
+                            alert("删除成功");
+                        } else {
+                            alert("删除失败");
+                        }
+                        location.reload();
+                    }
+                })
+            }
+
+        }
+
+        function batchdelete() {
+            //判断至少写了一项
+            var checkedNum = $("input[name='subcheck']:checked").length;
+            if (checkedNum == 0) {
+                alert("请至少选择一项!");
+                return false;
+            }
+            if (confirm("确定删除所选项目?")) {
+                var checkedList = new Array();
+                $("input[name='subcheck']:checked").each(function () {
+                    checkedList.push($(this).val());
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "batchDelete",
+                    data: {"delitems": checkedList.toString()},
+                    datatype: "html",
+                    success: function (data) {
+                        if (data == 'successed') {
+                            location.reload();//页面刷新
+                        } else {
+                            alert('删除失败!');
+                        }
+                    },
+                    error: function () {
+                        alert('删除失败!');
+                    }
+                });
+            }
+
+        }
+
+    </script>
+
+
 </head>
 
 <body>
@@ -27,6 +90,8 @@
     <div class="widget-header">
         <i class="icon-th-list"></i>
         <h3>查询结果</h3>
+        <a href="javascript:;" class="btn btn-danger" onclick="batchdelete()">
+            批量删除</a>
     </div>
     <!-- /widget-header -->
 
@@ -34,39 +99,39 @@
         <table class="table table-striped table-bordered">
             <thead>
             <tr>
+                <th>*</th>
                 <th>#</th>
                 <th>公司名称</th>
                 <th>资助项目/课题/其他</th>
                 <th>年度/批次</th>
                 <th>资助方式</th>
                 <th>资助力度</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="entry : ${data}">
+                <td width="10px"><input type="checkbox" name="subcheck" th:value="${entry.value.getId()}"/></td>
                 <td th:text="${entry.key}"></td>
                 <td th:text="${entry.value.getCompany()}"></td>
                 <td th:text="${entry.value.getProject()}"></td>
                 <td th:text="${entry.value.getBatch()}"></td>
                 <td th:text="${entry.value.getAidingways()}"></td>
                 <td th:text="${entry.value.getAssistance()}"></td>
-                <td hidden th:text="${entry.value.getId()}"></td>
+                <td><a href="javascript:;" class="btn btn-small" th:onclick="'deleteitem('+${entry.value.getId()}+')'">
+                    <i class="icon-remove">X</i></a>
+                </td>
+
             </tr>
             </tbody>
         </table>
+
     </div>
     <!-- /widget-content -->
 
+
 </div>
 
-<!--<script src="./js/jquery-1.7.2.min.js"></script>
-<script src="./js/excanvas.min.js"></script>
-<script src="./js/jquery.flot.js"></script>
-<script src="./js/jquery.flot.pie.js"></script>
-<script src="./js/jquery.flot.orderBars.js"></script>
-<script src="./js/jquery.flot.resize.js"></script>
-<script src="./js/bootstrap.js"></script>
-<script src="./js/charts/bar.js"></script>-->
 
 </body>
 
